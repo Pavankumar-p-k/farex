@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: farex-api
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    autoDeploy: true
+    buildCommand: cd distributed_platform/backend && pip install -r requirements.txt
+    startCommand: cd distributed_platform/backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATABASE_URL
+        fromDatabase:
+          name: farex-db
+          property: connectionString
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_MINUTES
+        value: 60
+      - key: BOOTSTRAP_ADMIN_USERNAME
+        value: admin
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
+      - key: BOOTSTRAP_ADMIN_ROLE
+        value: admin
+      - key: EMBEDDING_CIPHER_KEY
+        sync: false
+      - key: MATCH_THRESHOLD
+        value: 0.62
+      - key: ATTENDANCE_COOLDOWN_SECONDS
+        value: 15
+      - key: SYNC_ENABLED
+        value: false
+      - key: CORS_ORIGINS_RAW
+        sync: false
+
+databases:
+  - name: farex-db
+    databaseName: face_platform
+    user: face_platform_user
+    plan: free
+    postgresMajorVersion: "15"
+    ipAllowList: []

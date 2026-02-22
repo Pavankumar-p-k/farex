@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Face Attendance Control Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-mesh"></div>
+
+  <main class="dashboard-shell">
+    <header class="topbar card">
+      <div class="brand">
+        <span class="live-dot"></span>
+        <div>
+          <p class="eyebrow">Realtime Biometric Operations</p>
+          <h1>Face Attendance Control Suite</h1>
+        </div>
+      </div>
+      <div class="top-metrics">
+        <span id="fps">FPS: --</span>
+        <span id="known-count">Known: --</span>
+        <span id="power-level">Engine: --</span>
+        <span id="active-camera-chip">Source: --</span>
+        <span id="clock">--:--:--</span>
+      </div>
+    </header>
+
+    <section class="content-grid">
+      <section class="video-column card">
+        <article class="stream-panel">
+          <div class="panel-head">
+            <h2>Recognition Camera</h2>
+            <span id="camera-state" class="badge">STANDBY</span>
+          </div>
+          <div class="frame-wrap">
+            <img id="camera-stream" src="/api/stream/camera" alt="Live camera feed" />
+            <div class="frame-gloss"></div>
+          </div>
+        </article>
+
+        <article class="stream-panel">
+          <div class="panel-head">
+            <h2>Skeleton + Face Mesh</h2>
+            <span id="skeleton-state" class="badge accent">SCANNING</span>
+          </div>
+          <div class="frame-wrap">
+            <img id="skeleton-stream" src="/api/stream/skeleton" alt="Skeleton hologram feed" />
+            <canvas id="holo-overlay" class="holo-overlay"></canvas>
+            <div class="frame-gloss"></div>
+          </div>
+          <div class="mesh-stats">
+            <div>
+              <p id="face-points">--</p>
+              <span>Face Nodes</span>
+            </div>
+            <div>
+              <p id="tracked-count">--</p>
+              <span>Tracked</span>
+            </div>
+            <div>
+              <p id="unknown-count">--</p>
+              <span>Unknown</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <aside class="info-column">
+        <article class="card block">
+          <h3>System Health</h3>
+          <div class="health-grid">
+            <div>
+              <p id="health-power">--%</p>
+              <span>Processing Load</span>
+            </div>
+            <div>
+              <p id="health-known">--</p>
+              <span>Known Profiles</span>
+            </div>
+            <div>
+              <p id="health-tracks">--</p>
+              <span>Active Tracks</span>
+            </div>
+            <div>
+              <p id="health-unknown">--</p>
+              <span>Unknown Tracks</span>
+            </div>
+          </div>
+          <div class="radar-wrap">
+            <canvas id="radar-canvas"></canvas>
+          </div>
+        </article>
+
+        <article class="card block">
+          <h3>Camera Source</h3>
+          <div class="source-controls">
+            <label for="camera-select">Select source</label>
+            <select id="camera-select"></select>
+            <div class="source-actions">
+              <button id="apply-camera-btn" type="button">Apply Source</button>
+              <button id="refresh-cameras-btn" class="ghost" type="button">Rescan</button>
+            </div>
+            <label class="checkbox-row">
+              <input id="camera-auto-select" type="checkbox" />
+              <span>Auto-select USB/mobile camera</span>
+            </label>
+            <p id="camera-source-info" class="muted">Scanning camera sources...</p>
+          </div>
+        </article>
+
+        <article class="card block">
+          <h3>Mobile Access</h3>
+          <p class="muted">Open one link on your phone to use this dashboard remotely.</p>
+          <div id="mobile-links" class="link-list"></div>
+        </article>
+
+        <article class="card block">
+          <h3>Detected People</h3>
+          <div id="recognized-list" class="recognized-list">
+            <p class="muted">No faces recognized yet.</p>
+          </div>
+        </article>
+
+        <article class="card block">
+          <h3>Event Timeline</h3>
+          <div id="event-log" class="event-log">
+            <p class="muted">Waiting for recognition events.</p>
+          </div>
+        </article>
+
+        <article class="card block">
+          <h3>Enroll Unknown Face</h3>
+          <div id="pending-card" class="pending-card hidden">
+            <img id="pending-preview" alt="Unknown face preview" />
+            <p id="pending-info">Samples: 0</p>
+            <form id="save-form">
+              <input id="employee-id" name="employee_id" type="text" placeholder="Employee ID" required />
+              <input id="employee-name" name="name" type="text" placeholder="Full Name" required />
+              <button type="submit">Save Person</button>
+            </form>
+            <button id="dismiss-btn" class="ghost" type="button">Dismiss</button>
+          </div>
+          <p id="pending-empty" class="muted">Unknown face appears here for instant enrollment.</p>
+        </article>
+
+        <p id="error-box" class="error hidden"></p>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

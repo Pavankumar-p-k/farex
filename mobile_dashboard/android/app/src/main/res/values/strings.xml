@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Face Attendance</string>
+    <string name="title_activity_main">Face Attendance</string>
+    <string name="package_name">com.faceattendance.dashboard</string>
+    <string name="custom_url_scheme">com.faceattendance.dashboard</string>
+</resources>

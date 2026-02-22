@@ -1,28 +1,49 @@
-# Angular specific
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+
+# Environment and secrets
+.env
+.venv/
+venv/
+
+# Build artifacts
+build/
+dist/
+*.spec.bak
+
+# Logs and runtime files
+logs/
+*.log
+*.pid
+*.db-shm
+*.db-wal
+
+# Temporary local folders
+.tmp*/
+
+# Node / mobile build artifacts
+/node_modules/
+mobile_dashboard/node_modules/
+mobile_dashboard/android/.gradle/
+mobile_dashboard/android/app/build/
+mobile_dashboard/android/build/
+/angular/
+.angular/
 /dist/
 /out-tsc/
-/tmp/
 /coverage/
+/tmp/
 /e2e/test-output/
-/.angular/
-.angular/
-
-# Node modules and dependency files
-/node_modules/
-/package-lock.json
-/yarn.lock
-
-# Environment files
-/.env
-
-# Angular CLI and build artefacts
-/.angular-cli.json
-/.ng/
-
-# TypeScript cache
 *.tsbuildinfo
-
-# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# OS/editor files
+.DS_Store
+Thumbs.db

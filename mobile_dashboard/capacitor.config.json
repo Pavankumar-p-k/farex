@@ -1,0 +1,9 @@
+{
+  "appId": "com.faceattendance.dashboard",
+  "appName": "Face Attendance",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "cleartext": true
+  }
+}

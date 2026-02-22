@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Face Attendance Mobile</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Face Attendance</h1>
+    <p>Connect to your laptop dashboard</p>
+  </header>
+
+  <main>
+    <label for="server-url">Dashboard URL</label>
+    <input id="server-url" type="url" placeholder="http://192.168.1.23:8000" />
+    <div class="actions">
+      <button id="save-btn" type="button">Save</button>
+      <button id="open-btn" type="button">Open Dashboard</button>
+    </div>
+    <p id="status"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
